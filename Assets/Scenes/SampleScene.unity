@@ -372,7 +372,7 @@ GameObject:
   - component: {fileID: 1804602632}
   - component: {fileID: 1804602631}
   - component: {fileID: 1804602634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Piso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,6 +709,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   velocidad: 5
+  fuerzaSalto: 10
+  longitudRaycast: 0.59
+  capaSuelo:
+    serializedVersion: 2
+    m_Bits: 8
   animator: {fileID: 1912299715}
 --- !u!95 &1912299715
 Animator:
