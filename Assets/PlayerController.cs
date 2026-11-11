@@ -3,6 +3,9 @@ using UnityEngine;
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     public float velocidad = 5f;
+
+    public Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,6 +16,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
     void Update()
     {
         float velocidadX = Input.GetAxis("Horizontal")*Time.deltaTime*velocidad;
+
+        animator.SetFloat("movement",velocidadX*velocidad);
+
+        if (velocidadX <0)
+        {
+            transform.localScale = new Vector3(-1,1,1);
+        }
+        if (velocidadX >0)
+        {
+            transform.localScale = new Vector3(1,1,1);
+        }
 
         Vector3 posicion = transform.position;
 
