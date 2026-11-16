@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ParallaxMovement : MonoBehaviour
+public class ParallaxController : MonoBehaviour
 {
     Transform cam; //Main Camera
     Vector3 camStartPos;
@@ -39,7 +41,7 @@ public class ParallaxMovement : MonoBehaviour
     {
         for (int i = 0; i < backCount; i++) //find the farthest background
         {
-            if ((backgrounds[i].transform.position.z - cam.position.z) > farthestBack)
+            if((backgrounds[i].transform.position.z - cam.position.z) > farthestBack)
             {
                 farthestBack = backgrounds[i].transform.position.z - cam.position.z;
             }
@@ -54,7 +56,7 @@ public class ParallaxMovement : MonoBehaviour
     private void LateUpdate()
     {
         distance = cam.position.x - camStartPos.x;
-        transform.position = new Vector3(cam.position.x - 1, transform.position.y, 1.67f);
+        transform.position = new Vector3(cam.position.x, transform.position.y, 0);
 
         for (int i = 0; i < backgrounds.Length; i++)
         {
@@ -62,4 +64,6 @@ public class ParallaxMovement : MonoBehaviour
             mat[i].SetTextureOffset("_MainTex", new Vector2(distance, 0) * speed);
         }
     }
+
+    
 }
