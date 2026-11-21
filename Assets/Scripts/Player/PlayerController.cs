@@ -2,8 +2,14 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    public float velocidad = 5f;
+    public PlayerSoundController playerSoundController;
 
+    public float velocidad = 5f;
+    public bool step1 = false;
+    public bool fall = false;
+    public float timeByStep = 0.5f;
+    public float cont = 0f;
+        
     public float fuerzaSalto = 10f;
     public float longitudRaycast= 0.1f;
     public LayerMask capaSuelo;
@@ -23,6 +29,25 @@ public class NewMonoBehaviourScript : MonoBehaviour
     void Update()
     {
         float velocidadX = Input.GetAxis("Horizontal")*Time.deltaTime*velocidad;
+       
+        if (velocidadX != 0 && enSuelo) //!recibiendoDanio && !atacando//
+        {
+            cont += Time.deltaTime;
+            if(cont >= timeByStep)
+            {
+                cont =0f;
+                if (step1)
+                {
+                    playerSoundController.playMov1();
+                }
+                else
+                {
+                    playerSoundController.playMov2();
+                }
+                step1 = !step1; 
+            }
+            
+        }
 
         animator.SetFloat("movement",velocidadX*velocidad);
 
@@ -42,8 +67,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, longitudRaycast, capaSuelo);
         enSuelo = hit.collider != null;
 
+        if (enSuelo && rb.velocity.y <0 && fall)
+        {
+            playerSoundController.playCaida();
+            fall = false;
+        }
+
         if (enSuelo && Input.GetKeyDown(KeyCode.Space))
         {
+            fall = true;
+            playerSoundController.playSaltar();
             rb.AddForce(new Vector2(0f, fuerzaSalto), ForceMode2D.Impulse);
         }
 
