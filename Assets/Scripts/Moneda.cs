@@ -6,7 +6,7 @@ public class Moneda : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //this makes that every object with this script it gets destroy when the character collition him
         }
     }
 }

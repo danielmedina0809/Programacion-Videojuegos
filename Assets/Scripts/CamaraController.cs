@@ -4,7 +4,7 @@ public class CamaraController : MonoBehaviour
 {
     
     public Transform objetivo;
-    public float velocidadCamara = 0.025f;
+    public float velocidadCamara = 0.025f; // velocity of the camera movement
     public Vector3 desplazamiento;
 
     private void LateUpdate()

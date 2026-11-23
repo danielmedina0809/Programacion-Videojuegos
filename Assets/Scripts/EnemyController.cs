@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public Transform player;
-    public float detectionRadius = 5.0f;
-    public float speed = 2.0f;
+    public float detectionRadius = 5.0f; //enemy detection radius 
+    public float speed = 2.0f; //velocity of the enemy
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // on this function makes the enemy gets closer to the player
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
@@ -35,9 +35,9 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmosSelected() //this function draws the radious detection of the enemy
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
+        Gizmos.DrawWireSphere(transform.position, detectionRadius); 
     }
 }
