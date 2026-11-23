@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   player: {fileID: 1912299711}
   detectionRadius: 5
-  speed: 14
+  speed: 6
 --- !u!1 &176395314
 GameObject:
   m_ObjectHideFlags: 0
